@@ -53,7 +53,7 @@ public class RandomNumberCreator {
     /// InitRandomNumber() performs the XOR shifting calulation, using the intially set seed.
     /// </summary>
     /// <returns> Returns a float number. </returns>
-    public static float InitRandomNumber()
+    public static uint InitRandomNumber()
     {
         uint t = (seed ^ (seed << 11));
         seed = constant1;
@@ -61,7 +61,7 @@ public class RandomNumberCreator {
         constant2 = result;
         result = (result ^ (result >> 19)) ^ (t ^ (t >> 8));
         
-        return (float)result;
+        return result;
     }
 
     /// <summary>
@@ -71,8 +71,8 @@ public class RandomNumberCreator {
     /// <param name="_max"> Maximum float number. </param>
     /// <returns> Returns a whole value float number from _min to _max. </returns>
     /// <remarks> Requires that _min and _max be both greater than 0 and _max be greater than _min. </remarks>
-    public static float RandomNumber(float _min, float _max)
+    public static int RandomNumber(int _min, int _max)
     {
-        return (InitRandomNumber() % (_max + 1 - _min)) + _min;
+        return (int)(InitRandomNumber() % (_max - _min + 1)) + _min;
     }
 }
